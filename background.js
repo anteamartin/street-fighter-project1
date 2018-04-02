@@ -1,14 +1,20 @@
-function Background(game) {
+function Background(canvas, ctx) {
     this.x = 0;
     this.y = 0;
-    this.game = game;
+    this.ctx = ctx;
+    this.canvas = canvas;
   
     this.img = new Image();
-    this.img.src = './images/mbisonbackground.png';
+    this.img.src = 'images/mbisonbackground.png';
   
     this.dx = 7;
   }
   
   Background.prototype.draw = function() {
-    this.game.ctx.drawImage(this.img, this.x, this.y, this.game.canvas.width, this.game.canvas.height);
-  }
+    var that = this;
+    this.img.onload = function() {
+        that.ctx.drawImage(that.img, that.x, that.y, that.canvas.width, that.canvas.height);}
+    };
+    
+
+
