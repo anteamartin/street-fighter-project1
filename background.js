@@ -11,10 +11,9 @@ function Background(canvas, ctx) {
   }
   
   Background.prototype.draw = function() {
-    var that = this;
-    this.img.onload = function() {
-        that.ctx.drawImage(that.img, that.x, that.y, that.canvas.width, that.canvas.height);}
-    };
+    this.ctx.drawImage(this.img, this.x, this.y, this.canvas.width, this.canvas.height);
+    }
+  
     
 
 
