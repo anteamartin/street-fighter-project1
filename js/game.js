@@ -5,6 +5,7 @@ function Game(canvasId) {
   this.playeruno = new Player(this.canvas, this.ctx, 50, "left", "red", 1);
   this.playerdos = new Player(this.canvas, this.ctx, 900, "right", "blue", 2);
   this.interval;
+  
 };
 
 Game.prototype.playerCollisions = function () {

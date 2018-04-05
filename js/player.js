@@ -1,7 +1,7 @@
 function Player(canvas, ctx, x_start, direction_start, color, p) {
     this.x = x_start;
-    this.w = 100;
-    this.h = 100;
+    this.w = 150;
+    this.h = 200;
     this.life = 100;
     this.fillColor = color
     this.y = canvas.height - this.h - 50;
@@ -21,18 +21,32 @@ function Player(canvas, ctx, x_start, direction_start, color, p) {
     this.recentKick = false;
     this.enemie;
     this.prueba = false;
+    
+    
+
 };
 
 Player.prototype.draw = function (enemie) {
     this.enemie = enemie;
-    this.ctx.fillStyle = this.fillColor;
-    this.ctx.fillRect(this.x, this.y, this.w, this.h)
-    this.ctx.fillStyle = "yellow";
-    if (this.direction == "right") {
-        this.ctx.fillRect(this.x, this.y, this.w / 2, this.h / 2)
-    } else {
-        this.ctx.fillRect(this.x + this.w / 2, this.y, this.w / 2, this.h / 2)
+    if (this.numberPlayer==1){
+        var img = new Image();
+        img.src = "images/ryudepie.png";
+        this.ctx.drawImage(img, this.x, this.y, this.w, this.h);   
     }
+    if (this.numberPlayer==2){
+        var img = new Image();
+        img.src = "images/sagatdepie (1).png";
+        this.ctx.drawImage(img, this.x, this.y, this.w, this.h);
+    }
+
+    // this.ctx.fillStyle = this.fillColor;
+    // this.ctx.fillRect(this.x, this.y, this.w, this.h)
+    // this.ctx.fillStyle = "yellow";
+    // if (this.direction == "right") {
+    //     this.ctx.fillRect(this.x, this.y, this.w / 2, this.h / 2)
+    // } else {
+    //     this.ctx.fillRect(this.x + this.w / 2, this.y, this.w / 2, this.h / 2)
+    // }
     this.move();
     this.drawHealth();
     this.bullets.forEach(function (b) {
@@ -65,7 +79,7 @@ Player.prototype.move = function (enemie) {
 };
 
 Player.prototype.moveR = function () {
-    if (this.x < this.canvas.width - this.w*2.1) {
+    if (this.x < this.canvas.width - this.w * 2.1) {
         this.x = this.x + this.speed;
     }
 };
@@ -95,6 +109,16 @@ Player.prototype.shoot = function () {
     if (this.isShooting) {
         if (this.bullets.length < 1) {
             this.bullets.push(new Hadouken(this.canvas, this.ctx, this.x, this.y, this.direction))
+        }
+        if (this.numberPlayer == 1) {
+            var img = new Image();
+            img.src = "images/ryuhadouken.png";
+            this.ctx.drawImage(img, this.x, this.y, this.w, this.h);
+        }
+        if (this.numberPlayer == 2) {
+            var img = new Image();
+            img.src = "images/sagattigershot (1).png";
+            this.ctx.drawImage(img, this.x, this.y, this.w, this.h);
         }
     }
 };
@@ -126,13 +150,17 @@ Player.prototype.kick = function () {
 
 Player.prototype.drawKick = function () {
     if (this.numberPlayer == 1) {
-        this.ctx.fillStyle = "green"
-        this.ctx.fillRect(this.x + this.w, this.y, 40, 40)
+        var img = new Image();
+        img.src = "images/ryukick.png";
+        this.ctx.drawImage(img, this.x, this.y, this.w, this.h);
+
+
     }
 
     if (this.numberPlayer == 2) {
-        this.ctx.fillStyle = "green"
-        this.ctx.fillRect(this.x - 40, this.y, 40, 40)
+        var img = new Image();
+        img.src = "images/sagatkick (1).png";
+        this.ctx.drawImage(img, this.x, this.y, this.w, this.h);
     }
 };
 
@@ -148,7 +176,7 @@ Player.prototype.death = function () {
 Player.prototype.drawHealth = function () {
     this.ctx.fillStyle = "green"
     this.ctx.strokeStyle = "black"
-    this.ctx.strokeRect(this.x, this.y - 40, this.w, 10)
+    this.ctx.strokeRect(this.x, this.y - 40, this.life, 10)
     this.ctx.fillRect(this.x, this.y - 40, this.life, 10)
 };
 
@@ -168,22 +196,22 @@ Player.prototype.collision = function (bullet, player, i) {
 };
 
 Player.prototype.collisionBetween = function () {
-    if(this.numberPlayer == 1){
-        if( this.x + this.w < this.enemie.x) {
+    if (this.numberPlayer == 1) {
+        if (this.x + this.w < this.enemie.x) {
             this.prueba = false
-        } 
+        }
         else if (this.numberPlayer) {
             this.prueba = true
             this.x = this.x - 20;
         }
     }
-    if(this.numberPlayer == 2){
-        if( this.x > this.enemie.x + this.enemie.w) {
+    if (this.numberPlayer == 2) {
+        if (this.x > this.enemie.x + this.enemie.w) {
             this.prueba = false
-        } 
+        }
         else if (this.numberPlayer) {
             this.prueba = true
             this.x = this.x + 20;
-        }  
+        }
     }
 }
