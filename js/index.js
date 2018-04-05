@@ -12,6 +12,10 @@ window.onload = function () {
             game.playeruno.isJumping = true;
         } else if (event.keyCode === 49) {
             game.playeruno.isShooting = true;
+        } else if (event.keyCode == 50) {
+            //game.playeruno.isKicking = true;
+            game.playeruno.kick();
+
 
         } else if (event.keyCode === 76) {
             game.playerdos.moveRight = true;
@@ -22,7 +26,8 @@ window.onload = function () {
         } else if (event.keyCode === 55) {
             game.playerdos.isShooting = true;
         } else if (event.keyCode == 56) {
-            game.playerdos.isKicking = true;
+            //game.playerdos.isKicking = true;
+            game.playerdos.kick();
         }
     }
     document.onkeyup = function (event) {
@@ -34,6 +39,10 @@ window.onload = function () {
             game.playeruno.isJumping = false;
         } else if (event.keyCode === 49) {
             game.playeruno.isShooting = false;
+        } else if (event.keyCode == 50) {
+            //game.playeruno.isKicking = false;
+
+
 
         } else if (event.keyCode === 76) {
             game.playerdos.moveRight = false;
@@ -44,7 +53,7 @@ window.onload = function () {
         } else if (event.keyCode === 55) {
             game.playerdos.isShooting = false;
         } else if (event.keyCode == 56) {
-            game.playerdos.isKicking = false;
+            //game.playerdos.isKicking = false;
         }
     }
 };
