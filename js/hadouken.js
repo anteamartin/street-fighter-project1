@@ -3,20 +3,14 @@ function Hadouken(canvas, ctx, x, y, direction_start) {
     this.ctx = ctx;
     this.x = x;
     this.y = y;
-    this.h = 50;
-    this.w = 50;
+    this.h = 80;
+    this.w = 80;
     this.speed = 20;
     this.direction = direction_start;
 
 }
 
 Hadouken.prototype.draw = function () {
-    if(this.direction == "left")
-    var img = new Image();
-    img.src = "images/hadoukenbala.png";
-    this.ctx.drawImage(img, this.x, this.y, this.w, this.h);
-
-    if(this.direction == "right")
     var img = new Image();
     img.src = "images/hadoukenbala.png";
     this.ctx.drawImage(img, this.x, this.y, this.w, this.h);
